@@ -1,13 +1,10 @@
 #!/usr/bin/python
 import os
-ping = "ping -c1 10.11.1."
-devnull = " > /dev/null"
+subnet=raw_input("Type first three octets of subnet to scan (such as \"192.168.0\":")
 for x in range(1,5):
-    x=str(x)
-    cmd=ping+x+devnull
-    res=os.system(cmd)
-    if res == 0:
-      print '192.168.0.'+str(x), "is up"
-    else:
-        print '192.168.0.'+str(x), "is down"
-
+  cmd="ping -c1 " + subnet + "." + str(x) + " > /dev/null"
+  res=os.system(cmd)
+  if res == 0:
+    print subnet + "." + str(x) + " is up"
+  else:
+    print subnet + "." + str(x) + " is down"
